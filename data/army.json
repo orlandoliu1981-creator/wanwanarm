@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "旺旺軍團動畫指揮室 v1",
-    "updatedAt": "2026-03-31 19:05 BRT",
-    "status": "animated prototype v1",
-    "note": "目前是動畫展示版，狀態仍可能與 live session 有落差；未來可改接真實 sessions / cron / alerts。"
+    "title": "旺旺軍團動畫指揮室 v1.2",
+    "updatedAt": "2026-03-31 19:20 BRT",
+    "status": "mobile-ready animated prototype",
+    "note": "目前仍是展示版；忙碌等級先用口語分級 + session 條數表達，之後可改接 live sessions。"
   },
   "agents": [
     {
@@ -12,7 +12,9 @@
       "avatar": "🐈‍⬛",
       "role": "總管 / 跨線協調 / 中控台",
       "state": "busy",
-      "task": "準備把靜態底盤升級成動畫指揮室 v1",
+      "loadLabel": "有點忙",
+      "sessionCount": 2,
+      "task": "一邊盯軍團，一邊修動畫指揮室和規則",
       "lastActivity": "剛剛"
     },
     {
@@ -21,7 +23,9 @@
       "avatar": "🔧",
       "role": "Elite / KLV / 尖丰",
       "state": "idle",
-      "task": "待命，坐在左上工位看材料單",
+      "loadLabel": "待命",
+      "sessionCount": 0,
+      "task": "待命，左上工位看材料單",
       "lastActivity": "稍早"
     },
     {
@@ -30,6 +34,8 @@
       "avatar": "📊",
       "role": "Infinity / EPI / NFY / CMV",
       "state": "idle",
+      "loadLabel": "待命",
+      "sessionCount": 0,
       "task": "待命，準備接分析任務",
       "lastActivity": "稍早"
     },
@@ -39,7 +45,9 @@
       "avatar": "🪨",
       "role": "Stone 五金 / 追蹤",
       "state": "idle",
-      "task": "待命，但表情看起來隨時想吐槽人",
+      "loadLabel": "待命",
+      "sessionCount": 0,
+      "task": "待命，但表情還是很像想吐槽人",
       "lastActivity": "稍早"
     },
     {
@@ -48,7 +56,9 @@
       "avatar": "🚢",
       "role": "船期 / ETA / 清關 / TDZ",
       "state": "idle",
-      "task": "目前待命，沒偷跑；只是看板以前把他畫得太像在上工",
+      "loadLabel": "待命",
+      "sessionCount": 0,
+      "task": "目前待命，沒偷跑；只是以前看板把他畫得太像在上工",
       "lastActivity": "剛確認過"
     },
     {
@@ -57,7 +67,9 @@
       "avatar": "🌟",
       "role": "Faby 線支援 / 提醒 / 表格",
       "state": "warn",
-      "task": "剛發生一輪工具 / 任務切換卡住，現在已停下並恢復正常",
+      "loadLabel": "小忙",
+      "sessionCount": 1,
+      "task": "剛停下多工佇列，現在恢復正常，先別再堆新步驟",
       "lastActivity": "剛剛"
     },
     {
@@ -66,6 +78,8 @@
       "avatar": "🧁",
       "role": "Bianca 線支援",
       "state": "idle",
+      "loadLabel": "待命",
+      "sessionCount": 0,
       "task": "待命，工位螢幕亮著但人很安靜",
       "lastActivity": "稍早"
     },
@@ -75,6 +89,8 @@
       "avatar": "🛍️",
       "role": "電商線",
       "state": "idle",
+      "loadLabel": "待命",
+      "sessionCount": 0,
       "task": "待命，等新電商指令",
       "lastActivity": "稍早"
     },
@@ -84,6 +100,8 @@
       "avatar": "🧾",
       "role": "SD Monday / 查單支援",
       "state": "idle",
+      "loadLabel": "待命",
+      "sessionCount": 0,
       "task": "待命，負責 Monday 相關支援",
       "lastActivity": "今天稍早"
     }
@@ -106,8 +124,8 @@
     {
       "time": "現在",
       "from": "旺旺",
-      "to": "指揮室 v1",
-      "task": "把冷靜態看板改成卡通動態辦公室",
+      "to": "指揮室 v1.2",
+      "task": "把狀態文案改成口語忙碌等級 + session 條數",
       "status": "doing"
     }
   ],
@@ -121,13 +139,13 @@
     {
       "type": "ui",
       "target": "dashboard",
-      "detail": "舊版看板曾把小船畫得像一直在忙，實際 live session 是待命",
-      "status": "待修正"
+      "detail": "看板狀態改用口語分級：待命 / 小忙 / 有點忙 / 忙 / 很忙 / 爆忙",
+      "status": "調整中"
     },
     {
       "type": "build",
-      "target": "動畫版 v1",
-      "detail": "先做純 HTML/CSS/JS 動畫版，之後再接 live data",
+      "target": "動畫版 v1.2",
+      "detail": "先用展示資料，下一步再接 live session 條數",
       "status": "進行中"
     }
   ]

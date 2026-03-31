@@ -346,7 +346,7 @@
           </div>
           <div class="agent-name">${agent.name}</div>
           <div class="agent-role">${agent.role}</div>
-          <div class="state-tag">${stateLabel[agent.state] || '待命'}</div>
+          <div class="state-tag">${agent.loadLabel || stateLabel[agent.state] || '待命'}（${agent.sessionCount ?? 0}條）</div>
           <div class="bubble">
             <div>${agent.task}</div>
             ${typingMarkup(agent.state)}
