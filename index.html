@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>旺旺軍團指揮室 v0</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --panel: #171a22;
+      --panel-2: #1d2230;
+      --text: #e8ebf5;
+      --muted: #98a2b3;
+      --line: #2b3345;
+      --green: #2ecc71;
+      --yellow: #f1c40f;
+      --red: #ff5d5d;
+      --gray: #7f8c8d;
+      --blue: #57a6ff;
+      --purple: #9b59b6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", sans-serif;
+      background: radial-gradient(circle at top, #1b2030 0%, var(--bg) 45%);
+      color: var(--text);
+    }
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 24px; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px;
+      background: rgba(23,26,34,.75); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px;
+      backdrop-filter: blur(10px);
+    }
+    .title { font-size: 28px; font-weight: 800; }
+    .subtitle { color: var(--muted); margin-top: 6px; font-size: 14px; }
+    .meta { text-align: right; color: var(--muted); font-size: 13px; }
+    .grid {
+      display: grid; grid-template-columns: 1.35fr .85fr; gap: 20px;
+    }
+    .panel {
+      background: linear-gradient(180deg, rgba(29,34,48,.95), rgba(23,26,34,.95));
+      border: 1px solid var(--line);
+      border-radius: 20px; padding: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    .panel h2 { margin: 0 0 14px; font-size: 18px; }
+    .command-room {
+      display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card.main { grid-column: span 3; min-height: 140px; background: linear-gradient(135deg, #1d2230, #231f37); }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 10px;
+      font-size: 12px; font-weight: 700; margin-bottom: 10px; border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+    .badge.busy { color: #cfe6ff; background: rgba(87,166,255,.12); }
+    .badge.working { color: #d8ffd8; background: rgba(46,204,113,.12); }
+    .badge.warn { color: #fff1c2; background: rgba(241,196,15,.12); }
+    .badge.idle { color: #d3d7df; background: rgba(127,140,141,.14); }
+    .name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .role { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+    .task { font-size: 14px; line-height: 1.45; min-height: 44px; }
+    .meta-list { margin-top: 12px; color: var(--muted); font-size: 12px; display: grid; gap: 6px; }
+    .tables { display: grid; gap: 18px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 700; }
+    .chip { padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; display: inline-block; }
+    .chip.done { background: rgba(46,204,113,.15); color: #8ff0b0; }
+    .chip.doing { background: rgba(87,166,255,.15); color: #9fcbff; }
+    .chip.pending, .chip.warn { background: rgba(241,196,15,.15); color: #ffe083; }
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+      .command-room { grid-template-columns: 1fr; }
+      .card.main { grid-column: span 1; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <div class="title">旺旺軍團指揮室 🐈‍⬛</div>
+        <div class="subtitle">先做資料流，再升級成真正的軍團辦公室 UI</div>
+      </div>
+      <div class="meta">
+        <div id="meta-updated">更新中…</div>
+        <div id="meta-status">載入中…</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>指揮室</h2>
+        <div id="command-room" class="command-room"></div>
+      </div>
+
+      <div class="tables">
+        <div class="panel">
+          <h2>調動紀錄</h2>
+          <table>
+            <thead><tr><th>時間</th><th>從</th><th>到</th><th>任務</th><th>狀態</th></tr></thead>
+            <tbody id="dispatch-body"></tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h2>警報異常</h2>
+          <table>
+            <thead><tr><th>類型</th><th>對象</th><th>問題</th><th>狀態</th></tr></thead>
+            <tbody id="alerts-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const stateClass = { busy: 'busy', working: 'working', warn: 'warn', idle: 'idle' };
+    const stateLabel = { busy: '總控忙碌', working: '任務進行中', warn: '需留意', idle: '待命' };
+
+    function agentCard(agent) {
+      const cls = stateClass[agent.state] || 'idle';
+      const isMain = agent.id === 'main' ? 'main' : '';
+      return `
+        <div class="card ${isMain}">
+          <div class="badge ${cls}">${stateLabel[agent.state] || '待命'}</div>
+          <div class="name">${agent.name}</div>
+          <div class="role">${agent.role}</div>
+          <div class="task">${agent.task}</div>
+          <div class="meta-list">
+            <div>最後活動：${agent.lastActivity}</div>
+            <div>派工來源：${agent.reportsTo}</div>
+            <div>支援對象：${agent.supporting}</div>
+            <div>警報：${agent.alert}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    fetch('./data/army.json')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('meta-updated').textContent = `最後更新：${data.meta.updatedAt}`;
+        document.getElementById('meta-status').textContent = `狀態：${data.meta.status}`;
+        document.getElementById('command-room').innerHTML = data.agents.map(agentCard).join('');
+        document.getElementById('dispatch-body').innerHTML = data.dispatches.map(d => `
+          <tr>
+            <td>${d.time}</td>
+            <td>${d.from}</td>
+            <td>${d.to}</td>
+            <td>${d.task}</td>
+            <td><span class="chip ${d.status === 'done' ? 'done' : d.status === 'doing' ? 'doing' : 'pending'}">${d.status}</span></td>
+          </tr>
+        `).join('');
+        document.getElementById('alerts-body').innerHTML = data.alerts.map(a => `
+          <tr>
+            <td>${a.type}</td>
+            <td>${a.target}</td>
+            <td>${a.detail}</td>
+            <td><span class="chip warn">${a.status}</span></td>
+          </tr>
+        `).join('');
+      })
+      .catch(err => {
+        document.getElementById('meta-status').textContent = '載入失敗';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "title": "旺旺軍團指揮室",
+    "updatedAt": "2026-03-31 15:30 BRT",
+    "status": "v0 prototype"
+  },
+  "agents": [
+    {
+      "id": "main",
+      "name": "旺旺",
+      "role": "總管 / 跨線協調",
+      "state": "busy",
+      "task": "建置軍團看板 v1",
+      "lastActivity": "剛剛",
+      "reportsTo": "主人",
+      "supporting": "全軍",
+      "alert": "none"
+    },
+    {
+      "id": "elite",
+      "name": "小丰",
+      "role": "Elite / KLV / 尖丰",
+      "state": "idle",
+      "task": "待命",
+      "lastActivity": "13:36",
+      "reportsTo": "旺旺",
+      "supporting": "—",
+      "alert": "none"
+    },
+    {
+      "id": "infinity",
+      "name": "小手",
+      "role": "Infinity / EPI / NFY / CMV",
+      "state": "idle",
+      "task": "待命",
+      "lastActivity": "13:37",
+      "reportsTo": "旺旺",
+      "supporting": "—",
+      "alert": "none"
+    },
+    {
+      "id": "stone",
+      "name": "小石",
+      "role": "Stone 五金 / 追蹤",
+      "state": "idle",
+      "task": "待命",
+      "lastActivity": "13:38",
+      "reportsTo": "旺旺",
+      "supporting": "—",
+      "alert": "none"
+    },
+    {
+      "id": "shipping",
+      "name": "小船",
+      "role": "船期 / ETA / 清關 / TDZ",
+      "state": "working",
+      "task": "查船期屬本職；必要時可升級 Managed Browser",
+      "lastActivity": "15:04",
+      "reportsTo": "旺旺",
+      "supporting": "shipping",
+      "alert": "none"
+    },
+    {
+      "id": "ecommerce",
+      "name": "小賣",
+      "role": "電商線",
+      "state": "idle",
+      "task": "待命",
+      "lastActivity": "13:36",
+      "reportsTo": "旺旺",
+      "supporting": "—",
+      "alert": "none"
+    },
+    {
+      "id": "bianca",
+      "name": "咪咪",
+      "role": "Bianca 線支援",
+      "state": "idle",
+      "task": "待命",
+      "lastActivity": "13:36",
+      "reportsTo": "旺旺",
+      "supporting": "Bianca",
+      "alert": "none"
+    },
+    {
+      "id": "faby",
+      "name": "Eva",
+      "role": "Faby 線支援 / 提醒 / 表格",
+      "state": "warn",
+      "task": "曾出現回覆逾時，需觀察",
+      "lastActivity": "3h前",
+      "reportsTo": "旺旺",
+      "supporting": "Faby",
+      "alert": "reply-timeout"
+    },
+    {
+      "id": "luiza",
+      "name": "Luiza",
+      "role": "SD Monday / 查單支援",
+      "state": "idle",
+      "task": "待命",
+      "lastActivity": "今天稍早",
+      "reportsTo": "旺旺",
+      "supporting": "STONE-MONDAY",
+      "alert": "none"
+    }
+  ],
+  "dispatches": [
+    {
+      "time": "13:30",
+      "from": "旺旺",
+      "to": "小手",
+      "task": "同步技能 / 工具先確認規則",
+      "status": "done"
+    },
+    {
+      "time": "13:31",
+      "from": "旺旺",
+      "to": "小船",
+      "task": "補查船期特例規則",
+      "status": "done"
+    },
+    {
+      "time": "現在",
+      "from": "旺旺",
+      "to": "全軍",
+      "task": "建置軍團指揮室 v0",
+      "status": "doing"
+    }
+  ],
+  "alerts": [
+    {
+      "type": "delivery",
+      "target": "cron",
+      "detail": "部分 job 顯示 ok 但 not-delivered",
+      "status": "待查"
+    },
+    {
+      "type": "auth",
+      "target": "gog/google",
+      "detail": "待排查授權穩定性",
+      "status": "待查"
+    }
+  ]
+}
